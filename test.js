@@ -14,18 +14,14 @@ class files{
 
     async read(type){
         if(type == '.csv'){
-            var lines = fs.readFileSync(this.file, code).split('\t');
+            var lines = fs.readFileSync(this.file, code,(err, data)=>{
+            });
             var result = [{}];
             //await console.log(lines);
             /*await lines.forEach(row=>{
                 console.log(row);
                 console.log('-------------')
             });*/
-            for(var i = 0; i<=lines.length; i++){
-                console.log('---------------');
-                console.log(lines[i]);
-                console.log('---------------');
-            }
             //return console.log('thhis type file '+type);
         }else if(type == '.xltm'){
             return console.log('this i dont not type '+type);
