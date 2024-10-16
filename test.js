@@ -1,7 +1,7 @@
 const fs = require('fs');
 const csv = require('csv-parser');
 const path = require('path');
-
+const code = 'UTF8';
 class files{
     file = null;
     type = null;
@@ -12,21 +12,21 @@ class files{
         return this.read(this.type);
     }
 
-    read(type){
+    async read(type){
         if(type == '.csv'){
-            //console.log(this.file);
-            var i = 0;
-            var res = [];
-            fs.createReadStream(this.file).pipe(csv()).on('data', (row) => {
-                if(row !== null){
-                    res[i]=row;
-                    i++;
-                }
-            }) 
-            .on('end', () => { 
-            console.log('CSV file successfully processed'); 
-            });
-            return console.log('thhis type file '+type);
+            var lines = fs.readFileSync(this.file, code).split('\t');
+            var result = [{}];
+            //await console.log(lines);
+            /*await lines.forEach(row=>{
+                console.log(row);
+                console.log('-------------')
+            });*/
+            for(var i = 0; i<=lines.length; i++){
+                console.log('---------------');
+                console.log(lines[i]);
+                console.log('---------------');
+            }
+            //return console.log('thhis type file '+type);
         }else if(type == '.xltm'){
             return console.log('this i dont not type '+type);
         }else if(type == '.xlsx'){
